@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
+        <activity android:name=".model.Note"></activity>
+        <activity
+            android:name=".model.Adapter"
+            android:label="@string/title_activity_adapter"
+            android:theme="@style/Theme.PixelsFirenotes.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
