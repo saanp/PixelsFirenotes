@@ -1,6 +1,7 @@
 package com.app.pixelsfirenotes;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.pixelsfirenotes.auth.Register;
 import com.app.pixelsfirenotes.model.Note;
 import com.app.pixelsfirenotes.note.AddNote;
 import com.app.pixelsfirenotes.note.EditNote;
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         noteAdapter = new FirestoreRecyclerAdapter<Note, NoteViewHolder>(allNotes) {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
@@ -205,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.sync:
                 if(user.isAnonymous()){
-                    startActivity(new Intent(this, Registre.class));
+                    startActivity(new Intent(this, Register.class));
                     overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 }else {
                     Toast.makeText(this, "Your Are Connected.", Toast.LENGTH_SHORT).show();
@@ -240,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setPositiveButton("Sync Note", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getApplicationContext(), Registre.class));
+                        startActivity(new Intent(getApplicationContext(), Register.class));
                         finish();
                     }
                 }).setNegativeButton("Logout", new DialogInterface.OnClickListener() {
