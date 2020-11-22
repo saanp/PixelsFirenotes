@@ -72,6 +72,7 @@ public class AddNote extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AddNote.this, "Note Added.", Toast.LENGTH_SHORT).show();
                         onBackPressed();
+                        
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

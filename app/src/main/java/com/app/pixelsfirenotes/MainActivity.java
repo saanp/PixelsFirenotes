@@ -56,7 +56,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
     ActionBarDrawerToggle toggle;
     NavigationView nav_view;
     RecyclerView noteLists;
-    FirebaseFirestore fStore;
+    com.google.firebase.firestore.FirebaseFirestore fStore;
     FirestoreRecyclerAdapter<Note,NoteViewHolder> noteAdapter;
     FirebaseUser user;
     FirebaseAuth fAuth;
@@ -68,7 +68,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fStore = FirebaseFirestore.getInstance;
+        fStore = com.google.firebase.firestore.FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
 
