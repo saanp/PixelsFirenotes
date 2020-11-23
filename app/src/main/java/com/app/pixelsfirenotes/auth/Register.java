@@ -46,7 +46,7 @@ public class Register extends AppCompatActivity {
     TextView state,resend;
     PhoneAuthProvider.ForceResendingToken token;
     FirebaseFirestore fStore;
-    TextView mLoginButton;
+
 
 
 
@@ -184,6 +184,7 @@ public class Register extends AppCompatActivity {
             state.setVisibility(View.VISIBLE);
             checkUserProfile();
         }
+        
     }
 
     private void checkUserProfile() {
@@ -196,7 +197,7 @@ public class Register extends AppCompatActivity {
                     finish();
                 }else {
                     //Toast.makeText(Register.this, "Profile Do not Exists.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), Details.class));
+                   // startActivity(new Intent(getApplicationContext(), Details.class));
                     finish();
                 }
             }

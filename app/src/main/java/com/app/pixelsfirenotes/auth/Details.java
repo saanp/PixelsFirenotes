@@ -29,7 +29,7 @@ public class Details extends AppCompatActivity {
     Button saveBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    String userID;
+    String user;
     TextView mLoginButton1;
 
     @Override
@@ -44,7 +44,7 @@ public class Details extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        userID = fAuth.getCurrentUser().getUid();
+        user = fAuth.getCurrentUser().getUid();
 
 
 
@@ -56,7 +56,7 @@ public class Details extends AppCompatActivity {
                     return;
                 }
 
-                DocumentReference docRef = fStore.collection("users").document(userID);
+                DocumentReference docRef = fStore.collection("users").document(user);
                 Map<String,Object> user = new HashMap<>();
                 user.put("first",firstName.getText().toString());
                 user.put("last",lastName.getText().toString());
@@ -66,7 +66,7 @@ public class Details extends AppCompatActivity {
                 docRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: User Profile Created." + userID);
+                        Log.d(TAG, "onSuccess: User Profile Created." + user);
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }

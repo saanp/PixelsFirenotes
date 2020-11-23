@@ -177,12 +177,15 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
         TextView username = headerView.findViewById(R.id.userDisplayName);
         TextView userEmail = headerView.findViewById(R.id.userDisplayEmail);
 
-        if(user.isAnonymous()){
+        if(user.isAnonymous())
+        {
             userEmail.setVisibility(View.GONE);
             username.setText("Temporary User");
-        }else {
-            userEmail.setText(user.getEmail());
+        }else
+            {
             username.setText(user.getDisplayName());
+            userEmail.setText(user.getEmail());
+
         }
 
 
