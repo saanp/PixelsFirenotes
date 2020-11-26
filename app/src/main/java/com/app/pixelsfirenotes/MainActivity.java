@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.pixelsfirenotes.auth.Register;
+import com.app.pixelsfirenotes.inventory.Food;
 import com.app.pixelsfirenotes.model.Note;
 import com.app.pixelsfirenotes.note.AddNote;
 import com.app.pixelsfirenotes.note.EditNote;
@@ -217,11 +218,15 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 }
                 break;
 
-
             case R.id.logout:
                 checkUser();
                 break;
             case R.id.rem:
+                break;
+            case R.id.inventory:
+                startActivity(new Intent(this, Food.class));
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                break;
 
 
 
