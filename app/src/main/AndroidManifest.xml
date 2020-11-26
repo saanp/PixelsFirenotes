@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.pixelsfirenotes">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.Camera"
-        android:required="true">
-    </uses-feature>
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -15,26 +15,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
-        <activity android:name=".auth.Details"></activity>
-
-        <activity android:name=".auth.Register">
-
-        </activity>
-
-        <activity android:name=".Splash" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".inventory.NewItemFood"></activity>
+        <activity android:name=".inventory.food" />
+        <activity android:name=".auth.Details" />
+        <activity android:name=".auth.Register" />
+        <activity
+            android:name=".Splash"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
         <activity
             android:name=".note.EditNote"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".note.AddNote"
             android:label="@string/title_activity_add_note"
@@ -44,15 +40,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.pixelsfirenotes.MainActivity" />
         </activity>
-
         <activity
             android:name=".note.NoteDetails"
             android:label="@string/title_activity_note_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -217,6 +217,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 }
                 break;
 
+
             case R.id.logout:
                 checkUser();
                 break;
