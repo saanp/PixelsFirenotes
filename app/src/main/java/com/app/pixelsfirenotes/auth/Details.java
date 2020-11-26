@@ -16,6 +16,9 @@ import com.app.pixelsfirenotes.MainActivity;
 import com.app.pixelsfirenotes.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -63,6 +66,21 @@ public class Details extends AppCompatActivity {
                 user.put("email",email.getText().toString());
 
 
+                AuthCredential credential= EmailAuthProvider.getCredential(email.getText().toString(),firstName.getText().toString());
+                fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(Details.this, "Notes are synced", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Details.this, "Failed to connect. Try again", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
                 docRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -77,6 +95,10 @@ public class Details extends AppCompatActivity {
                         Toast.makeText(Details.this, "Data not Inserted", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
+
+
             }
         });
 

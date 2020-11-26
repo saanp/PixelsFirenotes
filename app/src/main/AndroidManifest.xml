@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
         <activity android:name=".auth.Details"></activity>
-        <activity android:name=".auth.Register" />
+
+        <activity android:name=".auth.Register">
+
+        </activity>
+
         <activity android:name=".Splash" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

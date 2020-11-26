@@ -67,18 +67,18 @@ public class Register extends AppCompatActivity {
 
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // todo:: resend OTP
+            public void onClick(View S) {
+
             }
         });
 
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View S) {
                 if(!phone.getText().toString().isEmpty() && phone.getText().toString().length() == 10) {
                     if(!verificationOnProgress){
-                        next.setEnabled(false);
+                         next.setEnabled(false);
                         progressBar.setVisibility(View.VISIBLE);
                         state.setVisibility(View.VISIBLE);
                         String phoneNum = "+"+countryCodePicker.getSelectedCountryCode()+phone.getText().toString();
@@ -195,16 +195,17 @@ public class Register extends AppCompatActivity {
                 if(documentSnapshot.exists()){
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
-                }else {
-                    //Toast.makeText(Register.this, "Profile Do not Exists.", Toast.LENGTH_SHORT).show();
-                   // startActivity(new Intent(getApplicationContext(), Details.class));
+                }
+                else{
+                    Toast.makeText(Register.this, "Profile Does not Exists.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), Details.class));
                     finish();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Register.this, "Profile Do Not Exists", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, "Profile Does Not Exists2", Toast.LENGTH_SHORT).show();
             }
         });
 
