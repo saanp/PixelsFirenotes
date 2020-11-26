@@ -16,7 +16,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,7 +28,6 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.pixelsfirenotes.auth.Details;
 import com.app.pixelsfirenotes.auth.Register;
 import com.app.pixelsfirenotes.model.Note;
 import com.app.pixelsfirenotes.note.AddNote;
@@ -44,9 +42,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -61,7 +60,6 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
     FirestoreRecyclerAdapter<Note,NoteViewHolder> noteAdapter;
     FirebaseUser user;
     FirebaseAuth fAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,28 +177,14 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
         TextView username = headerView.findViewById(R.id.userDisplayName);
         TextView userEmail = headerView.findViewById(R.id.userDisplayEmail);
 
-        if(!user.isAnonymous())
-        {
-          //  username.setText(user.getDisplayName());
+        if(user.isAnonymous()){
+            userEmail.setVisibility(View.GONE);
+            username.setText("Temporary User");
+        }else {
             userEmail.setText(user.getEmail());
-        }else
-            {
-                userEmail.setVisibility(View.GONE);
-              //  username.setText("Temporary User");
-            }
+            username.setText(user.getDisplayName());
+        }
 
-
-        DocumentReference docRef =fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
-                    username.setText(documentSnapshot.getString("first") + " " + documentSnapshot.getString("last"));
-                }else {
-
-                }
-            }
-        });
 
 
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
@@ -230,14 +214,16 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                     overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 }else {
                     Toast.makeText(this, "Your Are Connected.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, Details.class));
-
                 }
                 break;
 
             case R.id.logout:
                 checkUser();
                 break;
+            case R.id.rem:
+
+
+
 
             default:
                 Toast.makeText(this, "Coming soon.", Toast.LENGTH_SHORT).show();
