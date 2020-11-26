@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
         <activity android:name=".inventory.NewItemFood"></activity>
-        <activity android:name=".inventory.food" />
+        <activity android:name=".inventory.Food" />
         <activity android:name=".auth.Details" />
         <activity android:name=".auth.Register" />
         <activity

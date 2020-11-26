@@ -182,8 +182,9 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
             userEmail.setVisibility(View.GONE);
             username.setText("Temporary User");
         }else {
-            userEmail.setText(user.getEmail());
             username.setText(user.getDisplayName());
+            userEmail.setText(user.getEmail());
+            
         }
 
 
@@ -225,7 +226,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 break;
             case R.id.inventory:
                 startActivity(new Intent(this, Food.class));
-                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+
                 break;
 
 

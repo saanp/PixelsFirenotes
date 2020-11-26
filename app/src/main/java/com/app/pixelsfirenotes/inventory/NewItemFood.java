@@ -5,8 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,6 +32,8 @@ public class NewItemFood extends AppCompatActivity {
     private ImageView newimages;
     private FirebaseAuth fAAuth;
     private String a;
+    private static final int REQUEST_IMAGE_CAPTURE=101;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +66,21 @@ public class NewItemFood extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.save_changes:
+            case R.id.save:
                 savenote();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void takepicture(View view) {
+        Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if(imageTakeIntent.resolveActivity(getPackageManager())!=null)
+        {
+            startActivityForResult(imageTakeIntent,REQUEST_IMAGE_CAPTURE);
+
         }
     }
 
@@ -83,6 +97,11 @@ public class NewItemFood extends AppCompatActivity {
         if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
             newimguri = data.getData();
             newimages.setImageURI(newimguri);
+        }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            newimages.setImageBitmap(imageBitmap);
         }
     }
 
