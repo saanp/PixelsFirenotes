@@ -1,6 +1,5 @@
 package com.app.pixelsfirenotes.inventory;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,20 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.SearchView;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.pixelsfirenotes.Bitmap;
 import com.app.pixelsfirenotes.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 
 public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHolder> {
 
@@ -41,7 +34,6 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
         private Button delete;
         private Button update;
         private Button share;
-        private CardView card;
         public EViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.fur);
@@ -53,7 +45,6 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
             update = itemView.findViewById(R.id.updtfur);
             share = itemView.findViewById(R.id.shrfur);
             delete = itemView.findViewById(R.id.remfur);
-            card=itemView.findViewById(R.id.card);
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,22 +74,6 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
         holder.quantity.setText(model.getQty());
         holder.initial.setText(model.getInitqty());
         holder.image.setImageResource(model.getImgres());
-        /*holder.share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bitmap icon = drawable.getBitmap();
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                icon.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                File f = new File(getExternalCacheDir(), "temp_share.jpg");
-                FileOutputStream fo = new FileOutputStream(f);
-                fo.write(bytes.toByteArray());
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("image/*");
-                share.putExtra(Intent.EXTRA_STREAM,
-                        f.getUri());
-                startActivity(Intent.createChooser(share, "Share Image"));
-            }
-        });*/
     }
 
     public void deleteitem(int position){
@@ -108,6 +83,5 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
     public void editinitqty(String str,int position){
         getSnapshots().getSnapshot(position).getReference().update("initqty",str);
     }
-
 
 }

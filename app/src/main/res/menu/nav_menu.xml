@@ -16,7 +16,7 @@
                 android:title="Sync Notes" />
             <item
                 android:id="@+id/rem"
-                android:icon="@drawable/ic_sync_black_24dp"
+                android:icon="@drawable/ic_baseline_add_alert_24"
                 android:title="Reminder" />
             <item
                 android:id="@+id/inventory"
