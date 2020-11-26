@@ -76,25 +76,13 @@ public class Details extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Details.this, "Failed to connect. Try again", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-
-                docRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: User Profile Created." + user);
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
                         Log.d(TAG, "onFailure: Failed to Create User " + e.toString());
                         Toast.makeText(Details.this, "Data not Inserted", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
+
 
 
 
