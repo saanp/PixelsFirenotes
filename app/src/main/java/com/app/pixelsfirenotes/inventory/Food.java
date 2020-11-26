@@ -67,7 +67,7 @@ public class Food extends AppCompatActivity {
                 search= searchbar_food.getText().toString().toLowerCase();
                 Query query = foodRef.document(asd).collection("foodRef").orderBy("title").startAt(search).endAt(search + "\uf8ff");
                 FirestoreRecyclerOptions<Set_item> options = new FirestoreRecyclerOptions.Builder<Set_item>().setQuery(query, Set_item.class).build();
-                adapter.updateOptions(options);
+
 
             }
         });

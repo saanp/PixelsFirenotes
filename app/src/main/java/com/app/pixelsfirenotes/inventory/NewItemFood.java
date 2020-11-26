@@ -30,7 +30,6 @@ public class NewItemFood extends AppCompatActivity {
     private ImageView newimages;
     private FirebaseAuth fAAuth;
     private String a;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
