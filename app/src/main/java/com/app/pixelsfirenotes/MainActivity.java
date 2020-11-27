@@ -52,6 +52,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -150,8 +153,11 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
 
                             @Override
                             public boolean onMenuItemClick(MenuItem menuItem) {
-
-                                //Intent i=new Intent(v.getContext(),Bitmap.class);
+                                Intent shareintent=new Intent();
+                                shareintent.setAction(Intent.ACTION_SEND);
+                                shareintent.putExtra(Intent.EXTRA_TEXT,"The Note is:  "+note.getContent());
+                                shareintent.setType("text/plain");
+                                startActivity(shareintent);
 
                                 return false;
                             }
