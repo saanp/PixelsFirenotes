@@ -166,7 +166,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_sync_grey600_24dp"
+                    android:src="@drawable/ic_sync_black_24dp"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
