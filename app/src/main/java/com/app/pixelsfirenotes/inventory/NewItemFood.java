@@ -62,7 +62,7 @@ public class NewItemFood extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.save_changes:
+            case R.id.save:
                 savenote();
                 return true;
             default:

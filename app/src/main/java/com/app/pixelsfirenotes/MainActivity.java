@@ -1,6 +1,7 @@
 package com.app.pixelsfirenotes;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -14,6 +15,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -23,6 +27,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -47,6 +52,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -141,6 +149,19 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                                 return false;
                             }
                         });
+                        menu.getMenu().add("Share").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                Intent shareintent=new Intent();
+                                shareintent.setAction(Intent.ACTION_SEND);
+                                shareintent.putExtra(Intent.EXTRA_TEXT,"The Note is:  "+note.getContent());
+                                shareintent.setType("text/plain");
+                                startActivity(shareintent);
+
+                                return false;
+                            }
+                        });
 
                         menu.show();
 
@@ -182,8 +203,9 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
             userEmail.setVisibility(View.GONE);
             username.setText("Temporary User");
         }else {
-            userEmail.setText(user.getEmail());
             username.setText(user.getDisplayName());
+            userEmail.setText(user.getEmail());
+            
         }
 
 
@@ -211,6 +233,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
 
             case R.id.sync:
                 if(user.isAnonymous()){
+                    FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(this, Register.class));
                     overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 }else {
@@ -227,7 +250,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 break;
             case R.id.inventory:
                 startActivity(new Intent(this, Food.class));
-                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+
                 break;
 
 
@@ -343,5 +366,6 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
             noteAdapter.stopListening();
         }
     }
+
 
 }

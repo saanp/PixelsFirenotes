@@ -1,5 +1,7 @@
 package com.app.pixelsfirenotes.inventory;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +22,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHolder> {
-
-    public EAdapter(@NonNull FirestoreRecyclerOptions<Set_item> options) {
+Context context;
+private   OnItemClickListener listener;
+    public EAdapter(@NonNull FirestoreRecyclerOptions<Set_item> options,Context context) {
         super(options);
+        this.context=context;
     }
 
-    class EViewHolder extends RecyclerView.ViewHolder{
+    class EViewHolder extends RecyclerView.ViewHolder {
         private ImageView image;
         private TextView initial;
         private TextView text;
@@ -34,6 +38,7 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
         private Button delete;
         private Button update;
         private Button share;
+
         public EViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.fur);
@@ -45,6 +50,7 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
             update = itemView.findViewById(R.id.updtfur);
             share = itemView.findViewById(R.id.shrfur);
             delete = itemView.findViewById(R.id.remfur);
+
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -55,33 +61,50 @@ public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHo
                 @Override
                 public void onClick(View v) {
                     String str = quantityedit.getText().toString();
-                    editinitqty(str,getAdapterPosition());
+                    editinitqty(str, getAdapterPosition());
+                }
+            });
+            share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
                 }
             });
 
         }
-    }
+        }
 
-    @Override
-    public EViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
-        return new EViewHolder(v);
-    }
+        @Override
+        public EViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+            return new EViewHolder(v);
+        }
 
-    @Override
-    protected void onBindViewHolder(@NonNull EViewHolder holder, int position, @NonNull Set_item model) {
-        holder.text.setText(model.getTitle());
-        holder.quantity.setText(model.getQty());
-        holder.initial.setText(model.getInitqty());
-        holder.image.setImageResource(model.getImgres());
-    }
+        @Override
+        protected void onBindViewHolder(@NonNull EViewHolder holder, int position, @NonNull Set_item model) {
+            holder.text.setText(model.getTitle());
+            holder.quantity.setText(model.getQty());
+            holder.initial.setText(model.getInitqty());
+            holder.image.setImageResource(model.getImgres());
+        }
 
-    public void deleteitem(int position){
-        getSnapshots().getSnapshot(position).getReference().delete();
-    }
+        public void deleteitem(int position) {
+            getSnapshots().getSnapshot(position).getReference().delete();
+        }
 
-    public void editinitqty(String str,int position){
-        getSnapshots().getSnapshot(position).getReference().update("initqty",str);
+        public void editinitqty(String str, int position) {
+            getSnapshots().getSnapshot(position).getReference().update("initqty", str);
+        }
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
 }
+
+

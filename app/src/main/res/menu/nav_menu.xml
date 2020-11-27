@@ -15,7 +15,7 @@
                 android:icon="@drawable/ic_sync_black_24dp"
                 android:title="Sync Notes" />
             <item
-                android:id="@+id/reminder"
+                android:id="@+id/rem"
                 android:icon="@drawable/ic_sync_black_24dp"
                 android:title="Reminder" />
             <item
