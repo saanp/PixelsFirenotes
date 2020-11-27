@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.pixelsfirenotes">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.Camera"
@@ -15,8 +17,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
-        <activity android:name=".inventory.NewItemFood"></activity>
-        <activity android:name=".inventory.food" />
+        <activity android:name=".AddReminderActivity">
+            android:label="@string/title_activity_add_reminder"
+            android:parentActivityName=".MainActivityReminder"
+            android:theme="@style/AppTheme">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivityReminder"
+                />
+        </activity>
+
+        <activity android:name=".MainActivityReminder" />
+        <activity android:name=".inventory.NewItemFood" />
+        <activity android:name=".inventory.Food" />
         <activity android:name=".auth.Details" />
         <activity android:name=".auth.Register" />
         <activity
@@ -51,6 +65,16 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <provider
+            android:name=".data.AlarmReminderProvider"
+            android:authorities="com.app.pixelsfirenotes"
+            android:exported="false" />
+
+        <service
+            android:name=".rem.ReminderAlarmService"
+            android:exported="false" />
     </application>
+
 
 </manifest>
