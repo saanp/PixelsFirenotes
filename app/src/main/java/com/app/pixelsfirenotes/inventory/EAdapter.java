@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHolder> {
 Context context;
+private   OnItemClickListener listener;
     public EAdapter(@NonNull FirestoreRecyclerOptions<Set_item> options,Context context) {
         super(options);
         this.context=context;
@@ -49,6 +50,7 @@ Context context;
             update = itemView.findViewById(R.id.updtfur);
             share = itemView.findViewById(R.id.shrfur);
             delete = itemView.findViewById(R.id.remfur);
+
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,6 +62,15 @@ Context context;
                 public void onClick(View v) {
                     String str = quantityedit.getText().toString();
                     editinitqty(str, getAdapterPosition());
+                }
+            });
+            share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
                 }
             });
 
@@ -87,5 +98,13 @@ Context context;
         public void editinitqty(String str, int position) {
             getSnapshots().getSnapshot(position).getReference().update("initqty", str);
         }
-
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+}
+
+

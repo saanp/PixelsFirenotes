@@ -192,7 +192,7 @@ public class Register extends AppCompatActivity {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()){
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }

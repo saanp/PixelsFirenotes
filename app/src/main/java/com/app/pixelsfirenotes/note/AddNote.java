@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.app.pixelsfirenotes.MainActivity;
 import com.app.pixelsfirenotes.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -71,7 +73,8 @@ public class AddNote extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AddNote.this, "Note Added.", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
+                        startActivity(new Intent(AddNote.this, MainActivity.class));
+                        //onBackPressed();
                         
 
                     }
@@ -98,7 +101,7 @@ public class AddNote extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.close){
             Toast.makeText(this,"Not Saved.", Toast.LENGTH_SHORT).show();
-            onBackPressed();
+            startActivity(new Intent(AddNote.this, MainActivity.class));
 
         }
         return super.onOptionsItemSelected(item);
