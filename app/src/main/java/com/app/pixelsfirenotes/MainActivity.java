@@ -244,7 +244,9 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
             case R.id.logout:
                 checkUser();
                 break;
-            case R.id.rem:
+            case R.id.reminder:
+                startActivity(new Intent(this,MainActivityReminder.class));
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 break;
             case R.id.inventory:
                 startActivity(new Intent(this, Food.class));
