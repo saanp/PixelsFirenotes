@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.pixelsfirenotes">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.Camera"
@@ -16,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
         <activity android:name=".inventory.NewItemFood"></activity>
-        <activity android:name=".inventory.food" />
+        <activity android:name=".inventory.Food" />
         <activity android:name=".auth.Details" />
         <activity android:name=".auth.Register" />
         <activity
@@ -51,6 +52,32 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <activity android:name=".MainActivityReminder">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AddReminderActivity"
+            android:label="@string/title_activity_add_reminder"
+            android:parentActivityName=".MainActivityReminder"
+            android:theme="@style/AppTheme">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"
+                />
+        </activity>
+        <provider
+            android:name=".data.AlarmReminderProvider"
+            android:authorities="com.app.pixelsfirenotes"
+            android:exported="false" />
+
+        <service
+            android:name=".rem.ReminderAlarmService"
+            android:exported="false" />
+
     </application>
 
 </manifest>
