@@ -19,7 +19,8 @@
 
 
         <activity android:name=".inventory.NewItemFood"></activity>
-        <activity android:name=".inventory.Food" />
+        <activity android:name=".inventory.Food"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".auth.Details" />
         <activity android:name=".auth.Register" />
         <activity
@@ -52,17 +53,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".Rating"
-android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <activity android:name=".MainActivityReminder">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".AddReminderActivity"
             android:label="@string/title_activity_add_reminder"

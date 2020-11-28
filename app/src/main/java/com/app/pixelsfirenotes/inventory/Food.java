@@ -42,11 +42,10 @@ public class Food extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Food");
-
-
-
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -96,10 +95,6 @@ public class Food extends AppCompatActivity {
                 shareitem(note);
             }
         });
-
-
-
-
     }
 
 
@@ -122,7 +117,8 @@ public class Food extends AppCompatActivity {
         String shareSub="FOOD ITEM SHARING";
         myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
         String sharebody1=note.getInitqty();
-        myIntent.putExtra(Intent.EXTRA_TEXT,"Item Name: "+shareBody+"\n"+ "Available Quantity: "+sharebody1);
+        String Img= note.getImgres();
+        myIntent.putExtra(Intent.EXTRA_TEXT,"Item Name: "+shareBody+"\n"+ "Available Quantity: "+sharebody1+"The Pic:"+Img);
 
         startActivity(Intent.createChooser(myIntent,"Share using"));
     }

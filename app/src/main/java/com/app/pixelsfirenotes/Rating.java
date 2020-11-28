@@ -14,7 +14,6 @@ public class Rating extends AppCompatActivity {
 
     RatingBar ratingBar;
     Button btnSubmit;
-
     int myRating =0;
     private Toolbar toolbar2;
 

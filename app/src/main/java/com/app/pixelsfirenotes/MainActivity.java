@@ -205,7 +205,6 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
         }else {
             username.setText(user.getDisplayName());
             userEmail.setText(user.getEmail());
-            
         }
 
 
