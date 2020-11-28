@@ -8,6 +8,7 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Calendar extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class Calendar extends AppCompatActivity {
     EditText location;
     EditText description;
     Button addEvent;
+    ImageButton Back;
 
 
     @Override
@@ -27,7 +29,17 @@ public class Calendar extends AppCompatActivity {
         location=findViewById(R.id.Location);
         description=findViewById(R.id.Description);
         addEvent=findViewById(R.id.buttonaddevent);
+        Back = findViewById(R.id.imageButton1);
 
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), MainActivity.class));
+            }
+        });
+
+        
+        
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
