@@ -17,16 +17,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
-        <activity android:name=".inventory.NewItemOthers"></activity>
-        <activity android:name=".inventory.Others" />
-        <activity android:name=".inventory.NewItemStationary" />
-        <activity android:name=".inventory.Stationary" />
-        <activity android:name=".inventory.NewItemEducation" />
-        <activity android:name=".inventory.Education" />
-        <activity android:name=".inventory.NewItemHouse" />
-        <activity android:name=".inventory.House" />
-        <activity android:name=".inventory.NewItemWork" />
-        <activity android:name=".inventory.Work" />
+
+        <activity android:name=".inventory.NewItemOthers"
+            android:parentActivityName=".Dashboard"></activity>
+        <activity android:name=".inventory.Others"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.NewItemStationary"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.Stationary"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.NewItemEducation"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.Education"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.NewItemHouse"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.House"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.NewItemWork"
+            android:parentActivityName=".Dashboard"/>
+        <activity android:name=".inventory.Work"
+            android:parentActivityName=".Dashboard"/>
+
         <activity android:name=".Calendar">
             android:parentActivityName=".MainActivity"
         </activity>
@@ -34,7 +46,7 @@
         <activity android:name=".inventory.NewItemFood" />
         <activity
             android:name=".inventory.Food"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Dashboard" />
         <activity android:name=".auth.Details" />
         <activity android:name=".auth.Register" />
         <activity
