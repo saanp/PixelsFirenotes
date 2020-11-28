@@ -147,7 +147,7 @@ public class MainActivityReminder extends AppCompatActivity implements LoaderMan
     public void addReminderTitle(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Set Reminder Title");
+        builder.setTitle("Set Reminder Note");
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);

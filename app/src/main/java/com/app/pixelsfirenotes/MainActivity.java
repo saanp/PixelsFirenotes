@@ -207,7 +207,15 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
             userEmail.setText(user.getEmail());
         }
 
-
+        FloatingActionButton fab2 = findViewById(R.id.CalendarMain);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), Calendar.class));
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                finish();
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +226,8 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 finish();
             }
         });
+
+
 
     }
 
