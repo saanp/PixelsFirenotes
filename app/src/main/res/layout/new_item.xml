@@ -10,31 +10,32 @@
 
     <TextView
         android:id="@+id/nametext"
-        android:layout_marginTop="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
         android:text="Enter name for new Item:"
-        android:textSize="20sp"
-        android:textColor="#000000" />
+        android:textColor="#ffff"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/nameedit"
-        android:layout_marginTop="10sp"
-        android:layout_below="@id/nametext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nametext"
+        android:layout_marginTop="19dp"
         android:hint="Enter here"
-        android:textSize="20sp"
-        android:textColor="#000000"/>
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
     <TextView
         android:id="@+id/initqtytext"
-        android:layout_marginTop="20sp"
-        android:layout_below="@id/nameedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nameedit"
+        android:layout_marginTop="20dp"
         android:text="Enter initial quantity:"
-        android:textSize="20sp"
-        android:textColor="#000000" />
+        android:textColor="@color/gray"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/initqtyedit"
@@ -43,8 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter here"
-        android:textSize="20sp"
-        android:textColor="#000000"/>
+        android:textSize="15sp"
+        android:textColor="@color/gray"/>
     <ImageView
         android:id="@+id/newimages"
         android:layout_width="150sp"

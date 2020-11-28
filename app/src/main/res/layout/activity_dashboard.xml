@@ -89,7 +89,7 @@
                                     android:layout_width="100dp"
                                     android:id="@+id/imageview5"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/health"
+                                    android:src="@drawable/applogo"
                                     android:layout_centerInParent="true">
 
                                 </ImageView>
@@ -129,7 +129,7 @@
                                     android:layout_width="100dp"
                                     android:id="@+id/imageview6"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/health"
+                                    android:src="@drawable/applogo"
                                     android:layout_centerInParent="true">
 
                                 </ImageView>
@@ -176,7 +176,7 @@
                                     android:layout_width="50dp"
                                     android:id="@+id/imageview3"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/health"
+                                    android:src="@drawable/applogo"
                                     android:layout_centerInParent="true">
 
                                 </ImageView>
@@ -216,7 +216,7 @@
                                     android:layout_width="50dp"
                                     android:id="@+id/imageview4"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/health"
+                                    android:src="@drawable/applogo"
                                     android:layout_centerInParent="true">
 
                                 </ImageView>
@@ -263,7 +263,7 @@
                                     android:layout_width="50dp"
                                     android:id="@+id/imageview1"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/health"
+                                    android:src="@drawable/applogo"
                                     android:layout_centerInParent="true">
 
                                 </ImageView>
@@ -303,7 +303,7 @@
                                     android:layout_width="50dp"
                                     android:id="@+id/imageview2"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/health"
+                                    android:src="@drawable/applogo"
                                     android:layout_centerInParent="true">
 
                                 </ImageView>

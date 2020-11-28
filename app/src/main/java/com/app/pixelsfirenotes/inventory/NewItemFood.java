@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ public class NewItemFood extends AppCompatActivity {
     private ImageView newimages;
     private FirebaseAuth fAAuth;
     private String a;
+    private static final int REQUEST_IMAGE_CAPTURE=101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,16 @@ public class NewItemFood extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,1);
+    }
+
+    public void takepicture(View view) {
+        Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if(imageTakeIntent.resolveActivity(getPackageManager())!=null)
+        {
+            startActivityForResult(imageTakeIntent,REQUEST_IMAGE_CAPTURE);
+
+        }
     }
 
     @Override
