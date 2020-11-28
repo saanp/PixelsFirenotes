@@ -250,8 +250,10 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 break;
             case R.id.inventory:
                 startActivity(new Intent(this, Food.class));
-
                 break;
+             case R.id.rating:
+                 startActivity(new Intent(this,Rating.class));
+                 break;
 
 
 

@@ -16,6 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelsFirenotes">
+
+
         <activity android:name=".inventory.NewItemFood"></activity>
         <activity android:name=".inventory.Food" />
         <activity android:name=".auth.Details" />
@@ -49,6 +51,9 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity android:name=".Rating"
+android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
