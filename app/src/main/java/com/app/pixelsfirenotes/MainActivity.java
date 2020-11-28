@@ -263,7 +263,9 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
              case R.id.rating:
                  startActivity(new Intent(this,Rating.class));
                  break;
-
+            case R.id.notes:
+                startActivity(new Intent(this,MainActivity.class));
+                break;
 
 
 
