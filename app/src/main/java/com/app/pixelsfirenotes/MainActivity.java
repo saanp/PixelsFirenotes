@@ -258,7 +258,7 @@ public class MainActivity<FirebaseFirestore> extends AppCompatActivity implement
                 overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 break;
             case R.id.inventory:
-                startActivity(new Intent(this, Food.class));
+                startActivity(new Intent(this, Dashboard.class));
                 break;
              case R.id.rating:
                  startActivity(new Intent(this,Rating.class));
