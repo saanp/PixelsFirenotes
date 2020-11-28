@@ -103,10 +103,11 @@
                                     android:layout_marginTop="100dp"
                                     android:layout_marginBottom="10dp"
                                     ></TextView>
+
                                 <Button
+                                    android:id="@+id/buttonhouse"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttonprofile"
                                     android:background="@android:color/transparent">
 
                                 </Button>
@@ -146,7 +147,7 @@
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttoneducation2"
+                                    android:id="@+id/work"
                                     android:background="@android:color/transparent">
 
                                 </Button>
@@ -193,7 +194,7 @@
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttonhealth"
+                                    android:id="@+id/education"
                                     android:background="@android:color/transparent">
 
                                 </Button>
@@ -233,7 +234,7 @@
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttongoal"
+                                    android:id="@+id/grocery"
                                     android:background="@android:color/transparent">
 
                                 </Button>
@@ -280,7 +281,7 @@
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttonprofile5"
+                                    android:id="@+id/stat"
                                     android:background="@android:color/transparent">
 
                                 </Button>
@@ -320,7 +321,7 @@
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttoneducation"
+                                    android:id="@+id/oth"
                                     android:background="@android:color/transparent">
 
                                 </Button>
