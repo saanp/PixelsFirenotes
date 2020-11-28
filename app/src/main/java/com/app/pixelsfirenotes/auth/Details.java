@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.pixelsfirenotes.MainActivity;
 import com.app.pixelsfirenotes.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -32,7 +34,6 @@ public class Details extends AppCompatActivity {
     Button saveBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    String user;
     TextView mLoginButton1;
 
     @Override
@@ -44,12 +45,8 @@ public class Details extends AppCompatActivity {
         email = findViewById(R.id.emailAddress);
         saveBtn = findViewById(R.id.saveBtn);
 
-
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        user = fAuth.getCurrentUser().getUid();
-
-
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,38 +55,27 @@ public class Details extends AppCompatActivity {
                     Toast.makeText(Details.this, "Fill the required Details", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                DocumentReference docRef = fStore.collection("users").document(user);
-                Map<String,Object> user = new HashMap<>();
-                user.put("first",firstName.getText().toString());
-                user.put("last",lastName.getText().toString());
-                user.put("email",email.getText().toString());
-
-
-                AuthCredential credential= EmailAuthProvider.getCredential(email.getText().toString(),firstName.getText().toString());
-                fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
+                fAuth.getCurrentUser().updateEmail(email.getText().toString()).addOnCompleteListener(task -> {
+                    if( task.isSuccessful()) {
                         Toast.makeText(Details.this, "Notes are synced", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onFailure: Failed to Create User " + e.toString());
+                        Map<String,Object> userMap = new HashMap<>();
+                        userMap.put("first",firstName.getText().toString());
+                        userMap.put("last",lastName.getText().toString());
+                        userMap.put("email",email.getText().toString());
+                        fStore.collection("users").document(fAuth.getCurrentUser().getUid()).set(userMap)
+                                .addOnCompleteListener(ds ->{
+                                    if (ds.isSuccessful()){
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    } else {
+                                        Toast.makeText(Details.this, "Failed linking user email", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    } else {
+                        Log.d(TAG, "onFailure: Failed to update email User " + task.getException().toString());
                         Toast.makeText(Details.this, "Data not Inserted", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
-
-
-
-
             }
         });
-
-
     }
 }

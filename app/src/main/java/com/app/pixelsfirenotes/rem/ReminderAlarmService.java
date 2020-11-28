@@ -2,6 +2,7 @@ package com.app.pixelsfirenotes.rem;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -62,7 +63,13 @@ public class ReminderAlarmService extends IntentService {
             }
         }
 
-        Notification note = new NotificationCompat.Builder(this)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    "Reminders", "Reminders", NotificationManager.IMPORTANCE_DEFAULT);
+            manager.createNotificationChannel(mChannel);
+        }
+
+        Notification note = new NotificationCompat.Builder(this, "Reminders")
                 .setContentTitle(getString(R.string.reminder_title))
                 .setContentText(description)
                 .setSmallIcon(R.drawable.ic_add_alert_black_24dp)

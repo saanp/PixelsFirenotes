@@ -3,6 +3,7 @@ package com.app.pixelsfirenotes.inventory;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 public class EAdapter extends FirestoreRecyclerAdapter<Set_item,EAdapter.EViewHolder> {
 Context context;
@@ -88,7 +90,11 @@ private   OnItemClickListener listener;
             holder.text.setText(model.getTitle());
             holder.quantity.setText(model.getQty());
             holder.initial.setText(model.getInitqty());
-            holder.image.setImageResource(model.getImgres());
+            Log.d("imgurl",model.getImgres());
+            if(model.getImgres().isEmpty())
+                holder.image.setImageResource(R.drawable.ic_baseline_fastfood_24);
+            else
+                Picasso.get().load(model.getImgres()).placeholder(R.drawable.ic_baseline_fastfood_24).into(holder.image);
         }
 
         public void deleteitem(int position) {

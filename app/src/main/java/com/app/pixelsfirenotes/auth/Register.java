@@ -189,18 +189,14 @@ public class Register extends AppCompatActivity {
 
     private void checkUserProfile() {
         DocumentReference docRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-                }
-                else{
-                    Toast.makeText(Register.this, "Profile Does not Exists.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), Details.class));
-                    finish();
-                }
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()){
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            } else{
+                Toast.makeText(Register.this, "Profile Does not Exists.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), Details.class));
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -208,8 +204,5 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(Register.this, "Profile Does Not Exists2", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
 }
